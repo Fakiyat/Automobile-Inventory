@@ -1,0 +1,13 @@
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Logo img {
+  height: auto;
+  width: 40px;
+  margin-right: 10px;
+}
+.img-container span {
+  font-size: 20px;
+}

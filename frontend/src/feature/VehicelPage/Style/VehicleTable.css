@@ -1,0 +1,276 @@
+.body-nav {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  gap: 20px;
+  flex-wrap: wrap; /* Ensure buttons and search bar wrap on smaller screens */
+}
+
+.search_bar {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search_bar:focus {
+  border-color: #f87b86;
+  box-shadow: 0 0 8px rgba(230, 57, 70, 0.5);
+}
+
+.add-vehicle-btn {
+  background-color: #f72234;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-vehicle-btn:hover {
+  background-color: #f36262;
+}
+
+.vehicle-table {
+  width: 100%;
+  background: #e6e6e6;
+  border-radius: 13px;
+  box-shadow: 0 2px 10px rgba(190, 190, 190, 0.1);
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.vehicle-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.vehicle-table th,
+.vehicle-table td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 17px;
+  color: #000000;
+}
+
+.vehicle-table th {
+  background: #47596e;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #f0f0f0;
+}
+
+.vehicle-table tbody tr {
+  border-bottom: 1px solid #a9aeb4;
+}
+
+.vehicle-table tbody tr:hover {
+  background: #cfcccc;
+}
+
+.vehicle-img {
+  width: 150px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.vehicle-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.vehicle-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.vehicle-status {
+  font-size: 13px;
+  font-weight: 800;
+  color: #d15252;
+}
+
+/* Form Table For New Vehicles */
+.add-vehicle-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.add-vehicle-form {
+  background: white;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1001;
+  animation: slideDown 0.3s ease;
+}
+
+.add-vehicle-form input,
+.add-vehicle-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.add-vehicle-form button {
+  padding: 10px;
+  background-color: #5d7ea1;
+  color: rgb(255, 255, 255);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.add-vehicle-form button:hover {
+  background-color: #04070a;
+}
+
+.close-btn {
+  margin-left: auto;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: rgb(150, 134, 134);
+  border-radius: 50%;
+}
+
+.close-btn:hover {
+  color: red;
+  background-color: #ff4b4b85;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .body-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .add-vehicle-btn {
+    width: 50%;
+    text-align: center;
+  }
+
+  .search_bar {
+    max-width: 90%;
+  }
+
+  .vehicle-table th,
+  .vehicle-table td {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .vehicle-img {
+    width: 120px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .vehicle-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .vehicle-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+
+  .btn {
+    padding: 8px;
+    font-size: 11px;
+  }
+
+  .add-vehicle-form {
+    width: 95%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .body-nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search_bar {
+    padding: 8px 12px;
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .add-vehicle-btn {
+    padding: 10px;
+    font-size: 14px;
+    width: 50%;
+  }
+
+  .vehicle-table th,
+  .vehicle-table td {
+    font-size: 10px;
+    padding: 8px;
+  }
+
+  .vehicle-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .add-vehicle-form input,
+  .add-vehicle-form select {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .add-vehicle-form button {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .close-btn {
+    font-size: 16px;
+  }
+}

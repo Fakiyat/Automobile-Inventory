@@ -1,0 +1,15 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #31434d;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+}
+
+.footer-home {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #e2e2e2;
+}

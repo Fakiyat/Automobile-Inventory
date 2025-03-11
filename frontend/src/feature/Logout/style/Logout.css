@@ -1,0 +1,34 @@
+/* UserInfo.css or VehicleTable.css */
+
+.user-info {
+  display: flex; /* Aligns the welcome text and button in a row */
+  align-items: center; /* Vertically centers items */
+  justify-content: space-between; /* Space between text and button */
+  background-color: #f8f9fa; /* Light grey background */
+  padding: 10px 20px; /* Some spacing around */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-bottom: 15px; /* Add space below for separation */
+  font-size: 16px; /* Slightly larger text */
+  color: #333; /* Darker text color */
+}
+
+.user-info span {
+  font-weight: 500; /* Slight bold for "Welcome, User" */
+  margin-right: 10px; /* Space between text and button */
+}
+
+.logout-btn {
+  background-color: #dc3545; /* Red button for logout */
+  color: white; /* White text */
+  border: none; /* No border */
+  padding: 6px 12px; /* Padding around text */
+  font-size: 14px; /* Text size */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 5px; /* Rounded button */
+  transition: background-color 0.2s ease; /* Smooth hover effect */
+}
+
+.logout-btn:hover {
+  background-color: #c82333; /* Darker red on hover */
+}

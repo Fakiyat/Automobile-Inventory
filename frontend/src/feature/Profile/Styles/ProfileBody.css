@@ -1,0 +1,323 @@
+/* General Reset */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #111827;
+  color: #e5e7eb;
+  font-family: "Inter", sans-serif;
+}
+/* Tab Content background overlay */
+.tab-content {
+  flex-grow: 1;
+  padding: 15px;
+  background-color: #273952;
+  overflow-y: auto;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  border-left: 2px solid #2d3748;
+  border-radius: 16px;
+}
+
+/* Profile Page Layout */
+.profile-body {
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Title & Breadcrumbs */
+.page-title {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #f97316;
+}
+.breadcrumbs {
+  margin-bottom: 50px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.breadcrumbs-1 {
+  color: #f97316;
+  cursor: pointer;
+}
+.breadcrumbs-1:hover {
+  color: #959595;
+}
+.breadcrumbs-active {
+  color: #959595;
+}
+
+/* Tabs Section */
+.tabs {
+  display: flex;
+  border: 2px solid #444c58;
+  background-color: #1f2937;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  max-width: 600px;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 12px 0;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tabs button.active {
+  background-color: #f97316;
+  color: #111827;
+  font-weight: 600;
+}
+
+.tabs button:hover {
+  background-color: #ff6600;
+  color: #000;
+}
+
+/* Main Profile Wrapper (Content Box) */
+.profile-wrapper {
+  background-color: #202c3b;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+/* Profile Card (Top Section) */
+.profile-card {
+  margin-bottom: 40px;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #374151;
+  border: 2px solid #f97316;
+}
+.profile-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-name h3 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.contact-info p {
+  text-align: center;
+  font-size: 14px;
+  margin: 2px 0;
+  color: #ccc2c2;
+}
+
+.contact-info a {
+  text-align: center;
+  color: #3d87ff;
+  text-decoration: none;
+}
+/* Company card logo and name*/
+
+.company-card {
+  margin-bottom: 50px;
+}
+.company-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.company-logo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #3b4555;
+  border: 2px solid #f97316;
+  text-align: center;
+}
+
+.role {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f97316;
+  margin: 4px 0;
+}
+
+/* Bio Section */
+.bio-section {
+  margin-bottom: 24px;
+  padding-top: 8px;
+}
+
+.bio-section h4 {
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  padding-bottom: 10px;
+  color: #ffffff;
+  border-bottom: 2px solid #374151;
+}
+
+.bio-section p {
+  font-size: 16px;
+  color: #9da0a7;
+  line-height: 1.9;
+}
+
+/* Contact Details */
+.contact-details {
+  margin-bottom: 24px;
+}
+
+.contact-details h4 {
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #f3f4f6;
+  border-bottom: 2px solid #374151;
+  padding-bottom: 8px;
+}
+
+/* Contact Details Grid (2 Columns) */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 19px 12px;
+  font-size: 17px;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.details-grid strong {
+  font-size: 16px;
+  font-weight: 600;
+  color: #9da0a7;
+  padding-right: 4px;
+}
+
+/* Edit Button */
+.edit-btn-container {
+  display: flex;
+  position: relative;
+  justify-content: end;
+  right: 55px;
+  bottom: 80px;
+}
+
+.edit-btn {
+  background-color: transparent;
+  color: #f97316;
+  border: 1px solid #f97316;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.edit-btn:hover {
+  background-color: #f97316;
+  font-weight: bold;
+  color: #111827;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-btn-container {
+    position: static;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+
+  .tabs {
+    max-width: 100%;
+  }
+}
+/* Password field*/
+
+.password-field h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #b1b1b1;
+  font-weight: 600;
+  position: relative; /* Needed for placing the ? icon */
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between text and ? */
+}
+/* Adds the * before h3 */
+.password-field h3::before {
+  content: "*";
+  color: red;
+  margin-right: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+/* Wrap ℹ and : inside a span */
+.info-icon {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between ℹ and : */
+  font-weight: 500;
+}
+/* Adds the ℹ icon */
+.info-circle {
+  content: "?";
+  font-size: 13px;
+  color: #a7a7a7; /* Blue color */
+  background: transparent; /* Light blue background */
+  border-radius: 50%;
+  border: 1px solid grey;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.password-box {
+  width: 100%;
+  max-width: 300px; /* Adjust width as needed */
+  padding: 10px;
+  margin: 10px 0 40px 20px;
+  background-color: transparent;
+  border: 1px solid #adabaa;
+  color: white;
+  border-radius: 9px;
+  font-size: 14px;
+  transition: border 0.3s ease-in-out;
+}
+
+.password-box:focus {
+  border-color: #ff9100;
+  outline: none;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.4);
+}
