@@ -5,6 +5,7 @@ import Login from "./feature/auth/Login";
 import InventoryPage from "./feature/inventory/InventoryPage";
 import NotFound from "./shared/components/NotFound";
 import ProfilePage from "./feature/Profile/ProfilePage";
+import ProtectedRoute from "./feature/navigation/ProtectedRoute";
 
 function Logout() {
   localStorage.clear();
@@ -28,9 +29,20 @@ function App() {
 
         <Route
           path="/"
-          element={<InventoryPage />} //Protected route we cannt go to this /home without login
+          element={
+            <ProtectedRoute>
+              <InventoryPage />
+            </ProtectedRoute>
+          } //Protected route we cannt go to this /home without login
         />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
         {/* <Route path="/register" element={<RegisterAndLogout />} /> */}
         <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<NotFound />} />
