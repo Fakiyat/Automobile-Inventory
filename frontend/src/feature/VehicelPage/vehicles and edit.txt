@@ -1,0 +1,81 @@
+{vehicles.map((vehicle) => (
+              <tr key={vehicle.id}>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.includes(vehicle.id)}
+                    onChange={() => handleRowSelect(vehicle.id)}
+                  />
+                </td>
+                <td className=" vehicle-info">
+                  <img
+                    src={vehicle.images || "/default-placeholder.png"}
+                    alt={vehicle.brand}
+                    className="vehicle-img"
+                  />
+
+                  {/* <div>
+                    <td className="vehicle-name">{vehicle.brand}</td>
+                    <div className="vehicle-model">{vehicle.model}</div>
+                    <div className="vehicle-model">{vehicle.year}</div>
+                    <div className="vehicle-status">{vehicle.status}</div>
+                  </div> */}
+                </td>
+                <td>{vehicle.brand}</td>
+                <td>{vehicle.model}</td>
+                <td>{vehicle.transmission}</td>
+                <td>{vehicle.fuel_type}</td>
+                <td>{vehicle.price}</td>
+
+                <td>
+                  {/* Website Toogle */}
+                  <Switch />
+                </td>
+                <td>
+                  {/* AA Cars Toggle */}
+                  <Switch />
+                </td>
+                {/* AutoTraders Dropdown */}
+                <td>
+                  <DropDown>
+                    {/* {dropDownOptions.map((option) => (
+                    <option key={option} value={option} defaultValue={option}>
+                      {option}
+                    </option>
+                  ))} */}
+                  </DropDown>
+                </td>
+                <td>
+                  {/* EMG Toggle */}
+                  <Switch />
+                </td>
+                <td>
+                  {/* Facebook Toggle */}
+                  <Switch />
+                </td>
+                <td>
+                  {/* Social Toggle */}
+                  <Switch />
+                </td>
+
+                <td>
+                  {/* <button className="btn btn-view">View</button> */}
+
+                  <IconButton
+                    onClick={() => handleEditVehicle(vehicle)}
+                    aria-label="edit"
+                    style={{ color: "#007bff" }}
+                  >
+                    <ModeEditIcon />
+                  </IconButton>
+
+                  <IconButton
+                    onClick={() => handleDeleteVehicle(vehicle.id)}
+                    aria-label="delete"
+                    style={{ color: "#ee4b00" }}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </td>
+              </tr>
+            ))}

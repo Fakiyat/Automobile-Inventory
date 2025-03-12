@@ -3,11 +3,10 @@ import Navbar from "../Navbar-Inventory/Navbar";
 import Tabs from "../VehicelPage/Tabs";
 import VehicleTable from "../VehicelPage/VehicleTable";
 import Logout from "../Logout/Logout";
-import Data from "../VehicelPage/Data";
 
 function InventoryPage() {
   const [activeTab, setActiveTab] = useState("All"); // putting All there will by default have pressed the All ta button
-  const [vehicles, setVehicles] = useState(Data);
+  const [vehicles, setVehicles] = useState([]);
   return (
     <div>
       <nav className="navbar">
@@ -19,6 +18,8 @@ function InventoryPage() {
       {/*setActiveTab - Allows the Tabs component to change the active tab when you click a button.*/}
       {/* Pass vehicles and setVehicles to VehicleTable */}
       <VehicleTable
+        route="api/inventory/master-inventory/"
+        method="inventory"
         activeTab={activeTab}
         vehicles={vehicles}
         setVehicles={setVehicles}
