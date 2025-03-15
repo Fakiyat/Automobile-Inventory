@@ -21,7 +21,7 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
   //   const itemsPerPage = 30; // Number of items to load per page
 
   const [searchParams] = useSearchParams(); // Reads sorting parameters from URL
-  const sortBy = searchParams.get("sort") || "id"; // Determines which column to sort by (default is "id").
+  const sortBy = searchParams.get("sort") || "brand"; // Determines which column to sort by (default is "id").
   const sortOrder = searchParams.get("order") || "ascending"; //Determines sorting order (asc or desc).
 
   // ------------------------------------Getting data from api using Fetch-----------------///---------------------------------------------//
@@ -68,10 +68,10 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
     if (!vehicles.length) return; // Prevent running if no data is loaded yet
     setLoading(true);
     setTimeout(() => {
-      setDisplayedVehicles(vehicles.slice(0, page * 6));
+      setDisplayedVehicles(vehicles.slice(0, page * 20));
       setPage(page + 1); // Increase page count
       setLoading(false);
-    }, 300); // simulate delay
+    }, 700); // simulate delay
   };
 
   //---------------------------// Initialize displayed vehicles when vehicles data is loaded------------------------------------
@@ -100,15 +100,7 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
     window.addEventListener("scroll", handleScroll);
     // Cleanup - remove event listener
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [loading, displayedVehicles, vehicles]);
-
-  //---------------------------------Load Initial Data on component Mount--------------------------------------------------------------//
-
-  useEffect(() => {
-    if (vehicles.length > 0 && displayedVehicles.length === 0) {
-      loadMoreVehicles();
-    }
-  }, [vehicles]);
+  }, [loading]);
 
   //-------------------------------------------------New Vehicel useState---------------------------
 
@@ -167,72 +159,135 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
 
   //Adding neew Vehicle to the List// And Editing popup-------------------------------------------------------------------------
 
+  // const handleSaveVehicle = async () => {
+  //   if (editingVehicle) {
+  //     // Update existing vehicle (edit case)
+
+  //     try {
+  //       const response = await fetch(
+  //         `http://127.0.0.1:8000/api/inventory/master-inventory/${editingVehicle.id}/`,
+  //         {
+  //           method: "PUT",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //           body: JSON.stringify(newVehicle),
+  //         }
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error("Failed to update Vehicles");
+  //       }
+
+  //       const savedVehicle = await response.json();
+
+  //       if (editingVehicle)
+  //         // update the vehicles state immediatly
+  //         setVehicles((prevVehicles) =>
+  //           prevVehicles.map((vehicle) =>
+  //             vehicle.id === editingVehicle.id ? savedVehicle : vehicle
+  //           )
+  //         );
+  //       console.log(editingVehicle);
+  //       setEditingVehicle(null); // Exit edit mode
+
+  //       setShowAddForm(false);
+  //     } catch (error) {
+  //       setErrorMessage(error.message);
+  //     }
+  //   } else {
+  //     //Add new vehicle(Add Case)
+
+  //     try {
+  //       const response = await fetch(
+  //         `http://127.0.0.1:8000/api/inventory/master-inventory/`,
+
+  //         {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type": " application/json",
+  //           },
+  //           body: JSON.stringify(newVehicle),
+  //         }
+  //       );
+
+  //       if (!response.ok) {
+  //         throw new Error("failed to add Vehicel");
+  //       }
+
+  //       const savedVehicle = await response.json();
+
+  //       if (editingVehicle) {
+  //         setVehicles((prevVehicles) =>
+  //           prevVehicles.map((vehicle) =>
+  //             vehicle.id === editingVehicle.id ? savedVehicle : vehicle
+  //           )
+  //         );
+  //         setEditingVehicle(null); // Exit edit mode
+  //       } else {
+  //         // ✅ Add new vehicle to state
+  //         setVehicles((prevVehicles) => [...prevVehicles, savedVehicle]);
+  //       }
+
+  //       setShowAddForm(false);
+  //     } catch (error) {
+  //       setErrorMessage(error.message);
+  //     }
+
+  //     ResetForm();
+  //   }
+  // };
+  //   // console.log(newVehicle);
+  // };
+  //----------------------------------- Another way of edit delete using api-----------------------
   const handleSaveVehicle = async () => {
-    if (editingVehicle) {
-      // Update existing vehicle (edit case)
+    try {
+      let method = "POST"; // default to add vehicles
+      let url = "http://127.0.0.1:8000/api/inventory/master-inventory/";
 
-      try {
-        const response = await fetch(
-          `http://127.0.0.1:8000/api/inventory/master-inventory/${editingVehicle.id}/`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newVehicle),
-          }
+      if (editingVehicle) {
+        // If editing send a put request
+        method = "PUT";
+        url += `${editingVehicle.id}/`;
+      }
+      // } else {
+      //   //if adding send a POST request
+      //   method = "POST";
+      // }
+      // console.log("Sending data:", newVehicle); // Debug
+      const response = await fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newVehicle),
+      });
+      if (!response.ok) {
+        throw new Error(
+          `Failed to ${editingVehicle ? "update" : "add"} vehicle`
         );
-        if (!response.ok) {
-          throw new Error("Failed to update Vehicles");
-        }
+      }
 
-        setVehicles(
-          vehicles.map((vehicle) =>
-            vehicle.id === editingVehicle.id
-              ? { ...newVehicle, id: editingVehicle.id }
-              : vehicle
+      const savedVehicle = await response.json();
+
+      if (editingVehicle) {
+        //  Update the vehicle in state immediately
+        setVehicles((prevVehicles) =>
+          prevVehicles.map((vehicle) =>
+            vehicle.id === editingVehicle.id ? savedVehicle : vehicle
           )
         );
-        // console.log(editingVehicle);
-
-        setEditingVehicle(null); // Exit edit mode
-
-        setShowAddForm(false);
-      } catch (error) {
-        setErrorMessage(error.message);
-      }
-    } else {
-      //Add new vehicle(Add Case)
-
-      try {
-        const response = await fetch(
-          `http://127.0.0.1:8000/api/inventory/master-inventory/`,
-
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": " application/json",
-            },
-            body: JSON.stringify(newVehicle),
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("failed to add Vehicel");
-        }
-
-        const savedVehicle = await response.json();
-
-        setVehicles([...vehicles, savedVehicle]);
-
-        setShowAddForm(false);
-      } catch (error) {
-        setErrorMessage(error.message);
+        setEditingVehicle(null);
+      } else {
+        //Add new vehicles to state
+        setVehicles((prevVehicles) => [...prevVehicles, savedVehicle]);
       }
 
+      setShowAddForm(false);
       ResetForm();
+    } catch (error) {
+      console.error("Error:", error);
+      setErrorMessage(error.message);
     }
-    // console.log(newVehicle);
   };
 
   //--------------------------------------Resets the form after every submission-------------------------------------------------------------------------------------//-------------------------------------------------------------------------------------
@@ -267,6 +322,11 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
       ResetForm();
     }
   }, [editingVehicle]);
+  //---------------------------------Load Initial Data on component Mount--------------------------------------------------------------//
+
+  useEffect(() => {
+    setDisplayedVehicles(vehicles);
+  }, [vehicles]); // Reacts to changes in `vehicles`
 
   // Handle Delete Vehicle=-----------------------------------------------------------------------------------------
 
@@ -277,7 +337,7 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
     if (!confirmDelete) return;
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/inventory/master-inventory/ ${id}/`,
+        `http://127.0.0.1:8000/api/inventory/master-inventory/${id}/`,
         {
           method: "DELETE",
         }
@@ -285,7 +345,7 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
       if (!response.ok) {
         throw new Error("Failed to Delete Vehicle");
       }
-
+      // Remove the vehicle from state
       setVehicles(vehicles.filter((vehicle) => vehicle.id !== id));
     } catch (error) {
       setErrorMessage(error.message);
@@ -474,7 +534,11 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
 
             <th>Transmission</th>
             <th>Fuel Type</th>
-
+            <th>Auto-Hub</th>
+            <th>Website</th>
+            <th>AA Cars</th>
+            <th>Facebook</th>
+            <th>Social</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -490,7 +554,7 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
               </td>
               <td className="vehicle-info">
                 <img
-                  src={vehicle.images || "/default-placeholder.png"}
+                  src={vehicle.images.image}
                   alt={vehicle.brand}
                   className="vehicle-img"
                 />
@@ -503,6 +567,31 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
               <td>{vehicle.transmission}</td>
               <td>{vehicle.fuel_type}</td>
               {/* <td>{vehicle.price}</td> */}
+              <td>
+                {/* Auto-hub Toogle */}
+                <Switch />
+              </td>
+              <td>
+                {/* Website Toogle */}
+                <Switch />
+              </td>
+              <td>
+                {/* AA Cars Toggle */}
+                <Switch />
+              </td>
+              <td>
+                {/* Facebook Toggle */}
+                <Switch />
+              </td>
+              <td>
+                <DropDown>
+                  {/* {dropDownOptions.map((option) => (
+                    <option key={option} value={option} defaultValue={option}>
+                      {option}
+                    </option>
+                  ))} */}
+                </DropDown>
+              </td>
 
               <td>
                 <IconButton
