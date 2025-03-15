@@ -68,7 +68,7 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
     if (!vehicles.length) return; // Prevent running if no data is loaded yet
     setLoading(true);
     setTimeout(() => {
-      setDisplayedVehicles(vehicles.slice(0, page * 6));
+      setDisplayedVehicles(vehicles.slice(0, page * 20));
       setPage(page + 1); // Increase page count
       setLoading(false);
     }, 700); // simulate delay
@@ -289,6 +289,7 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
       setErrorMessage(error.message);
     }
   };
+
   //--------------------------------------Resets the form after every submission-------------------------------------------------------------------------------------//-------------------------------------------------------------------------------------
 
   const ResetForm = () => {
@@ -553,7 +554,7 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
               </td>
               <td className="vehicle-info">
                 <img
-                  src={vehicle.images || "/default-placeholder.png"}
+                  src={vehicle.images.image}
                   alt={vehicle.brand}
                   className="vehicle-img"
                 />
