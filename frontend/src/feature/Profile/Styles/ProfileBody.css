@@ -321,3 +321,114 @@ body {
   outline: none;
   box-shadow: 0 0 3px rgba(0, 123, 255, 0.4);
 }
+
+/* profile Edit button modal*/
+/* Modal Styles */
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  right: -50%; /* Start hidden on the right */
+  width: 50%; /* Half-screen width */
+  height: 100vh;
+  background: rgba(36, 43, 66, 0.925);
+  box-shadow: -2px 0 10px rgba(116, 166, 231, 0.2);
+  transition: right 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  z-index: 1000;
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+/* When modal is active, slide it in */
+.modal.active {
+  right: 0;
+}
+
+/* Modal content styling */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgb(37, 45, 73);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid rgb(40, 63, 94);
+}
+
+/* Header styling */
+.modal h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ff6803;
+  text-align: center;
+}
+
+/* Label styling */
+.modal label {
+  font-weight: bold;
+  color: #b9b9b9;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Input and select field styling */
+.modal input,
+.modal select {
+  padding: 12px;
+  border: 1px solid #3d577e;
+  background-color: transparent;
+  color: #f7f7f7;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+}
+.modal select {
+  padding-right: 40px;
+  background: rgb(37, 45, 73);
+  cursor: pointer;
+}
+/* Button styling */
+.save-btn,
+.cancel-btn {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 12px;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+}
+
+.save-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #45a049;
+}
+
+.cancel-btn:hover {
+  background-color: #d32f2f;
+}
+.modal textarea {
+  padding: 12px;
+  border: 1px solid #3d577e;
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  background: rgb(37, 45, 73);
+  backdrop-filter: blur(5px);
+  resize: none; /* Prevent resizing */
+  height: 100px;
+}

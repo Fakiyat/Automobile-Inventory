@@ -26,23 +26,12 @@ function App() {
             <Login />
           } /* and for this route itsnot protected so we can render this without login  */
         />
-
         <Route
           path="/"
-          element={
-            <ProtectedRoute>
-              <InventoryPage />
-            </ProtectedRoute>
-          } //Protected route we cannt go to this /home without login
+          element={<InventoryPage />} //Protected route we cannt go to this /home without login
         />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <ProfilePage />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/profile" element={<ProfilePage />} />{" "}
+        {/* Add Protected route  */}
         {/* <Route path="/register" element={<RegisterAndLogout />} /> */}
         <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<NotFound />} />
