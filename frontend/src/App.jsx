@@ -28,9 +28,20 @@ function App() {
         />
         <Route
           path="/"
-          element={<InventoryPage />} //Protected route we cannt go to this /home without login
+          element={
+            <ProtectedRoute>
+              <InventoryPage />
+            </ProtectedRoute>
+          } //Protected route we cannt go to this /home without login
         />
-        <Route path="/profile" element={<ProfilePage />} />{" "}
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />{" "}
         {/* Add Protected route  */}
         {/* <Route path="/register" element={<RegisterAndLogout />} /> */}
         <Route path="/logout" element={<Logout />} />
