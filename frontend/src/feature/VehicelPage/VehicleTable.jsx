@@ -40,15 +40,15 @@ const VehicleTable = ({ activeTab, vehicles, setVehicles }) => {
       const data = await response.json(); // this is for the data(results) to be in json format
 
       // Important fix - check if data is an array or has results property
-      if (Array.isArray(data)) {
-        setVehicles(data);
-      } else if (data.results && Array.isArray(data.results)) {
-        setVehicles(data.results);
-      } else {
-        console.error("Unexpected Api response format", data);
-        setErrorMessage("Unexpected data format from api");
-      }
-
+      // if (Array.isArray(data)) {
+      //   setVehicles(data);
+      // } else if (data.results && Array.isArray(data.results)) {
+      //   setVehicles(data.results);
+      // } else {
+      //   console.error("Unexpected Api response format", data);
+      //   setErrorMessage("Unexpected data format from api");
+      // }
+      setVehicles(data.results);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching vehicles", error.message);
